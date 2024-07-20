@@ -11,6 +11,9 @@ type.
 import Standard.Buffer (
     Buffer
 );
+import Standard.Order (
+    TotalOrder
+);
 
 module Standard.String is
     type String: Linear;
@@ -86,4 +89,10 @@ module Standard.String is
     """
     generic [R: Region]
     function getSpanMut(string: &![String, R], start: Index, final: Index): Span![Nat8, R];
+
+    ---
+    --- Instances
+    ---
+
+    instance TotalOrder(String);
 end module.

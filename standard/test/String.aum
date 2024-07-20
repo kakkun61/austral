@@ -21,6 +21,12 @@ import Standard.Test.Unit (
     suiteHeading,
     testHeading
 );
+import Standard.Order (
+    LessThan,
+    GreaterThan,
+    Equal,
+    compare
+);
 
 module body Standard.Test.String is
     function byteStringTestSuite(): Unit is
@@ -30,6 +36,7 @@ module body Standard.Test.String is
         fromLiteralTest();
         fromLiteralEmptyTest();
         storeNthTest();
+        compareTest();
         return nil;
     end;
 
@@ -51,10 +58,10 @@ module body Standard.Test.String is
         assertTrue(nthByte(&b, 2) = 'a', "[2] = a");
         assertTrue(nthByte(&b, 3) = 'a', "[3] = a");
         destroyString(b);
-        assertSuccess("destroyString complete");
+        assertSuccess("makeString and destroyString complete");
         return nil;
     end;
-  
+
     function fromLiteralTest(): Unit is
         testHeading("fromLiteral");
         let s: String := fromLiteral("Hello, World!");
@@ -73,7 +80,7 @@ module body Standard.Test.String is
         assertTrue(nthByte(&s, 11) = 'd', "[11] = d");
         assertTrue(nthByte(&s, 12) = '!', "[12] = !");
         destroyString(s);
-        assertSuccess("destroyString complete");
+        assertSuccess("fromLiteral complete");
         return nil;
     end;
 
@@ -82,7 +89,7 @@ module body Standard.Test.String is
         let s: String := fromLiteral("");
         assertLength(&s, 0);
         destroyString(s);
-        assertSuccess("destroyString complete");
+        assertSuccess("fromLiteral empty complete");
         return nil;
     end;
 
@@ -96,7 +103,92 @@ module body Standard.Test.String is
         storeNth(&!b, 0, 'b');
         assertTrue(nthByte(&b, 0) = 'b', "[0] = b");
         destroyString(b);
-        assertSuccess("destroyString complete");
+        assertSuccess("storeNth complete");
+        return nil;
+    end;
+
+    function compareTest(): Unit is
+        testHeading("compare");
+
+        var a: String := fromLiteral("a");
+        var b: String := fromLiteral("a");
+        case compare(&a, &b) of
+            when LessThan do
+                assertFailure("\"a\" = \"b\"");
+            when Equal do
+                assertSuccess("\"a\" = \"b\"");
+            when GreaterThan do
+                assertFailure("\"a\" = \"b\"");
+        end case;
+        destroyString(a);
+        destroyString(b);
+
+        a := fromLiteral("a");
+        b := fromLiteral("b");
+        case compare(&a, &b) of
+            when LessThan do
+                assertSuccess("\"a\" < \"b\"");
+            when Equal do
+                assertFailure("\"a\" < \"b\"");
+            when GreaterThan do
+                assertFailure("\"a\" < \"b\"");
+        end case;
+        destroyString(a);
+        destroyString(b);
+
+        a := fromLiteral("a");
+        b := fromLiteral("aa");
+        case compare(&a, &b) of
+            when LessThan do
+                assertSuccess("\"a\" < \"aa\"");
+            when Equal do
+                assertFailure("\"a\" < \"aa\"");
+            when GreaterThan do
+                assertFailure("\"a\" < \"aa\"");
+        end case;
+        destroyString(a);
+        destroyString(b);
+
+        a := fromLiteral("b");
+        b := fromLiteral("a");
+        case compare(&a, &b) of
+            when LessThan do
+                assertFailure("\"b\" > \"a\"");
+            when Equal do
+                assertFailure("\"b\" > \"a\"");
+            when GreaterThan do
+                assertSuccess("\"b\" > \"a\"");
+        end case;
+        destroyString(a);
+        destroyString(b);
+
+        a := fromLiteral("");
+        b := fromLiteral("");
+        case compare(&a, &b) of
+            when LessThan do
+                assertFailure("\"\" = \"\"");
+            when Equal do
+                assertSuccess("\"\" = \"\"");
+            when GreaterThan do
+                assertFailure("\"\" = \"\"");
+        end case;
+        destroyString(a);
+        destroyString(b);
+
+        a := fromLiteral("");
+        b := fromLiteral("a");
+        case compare(&a, &b) of
+            when LessThan do
+                assertSuccess("\"\" < \"a\"");
+            when Equal do
+                assertFailure("\"\" < \"a\"");
+            when GreaterThan do
+                assertFailure("\"\" < \"a\"");
+        end case;
+        destroyString(a);
+        destroyString(b);
+
+        assertSuccess("compare complete");
         return nil;
     end;
 

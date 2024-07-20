@@ -15,6 +15,13 @@ import Standard.Buffer (
     getSpan as bufferGetSpan,
     getSpanMut as bufferGetSpanMut
 );
+import Standard.Order (
+    Equal,
+    GreaterThan,
+    LessThan,
+    Ordering,
+    TotalOrder
+);
 
 module body Standard.String is
     record String: Linear is
@@ -99,4 +106,33 @@ module body Standard.String is
     function getSpanMut(string: &![String, R], start: Index, final: Index): Span![Nat8, R] is
         return bufferGetSpanMut(&(string->buf), start, final);
     end;
-end module body. 
+
+    ---
+    --- Instances
+    ---
+    instance TotalOrder(String) is
+        generic [R: Region, S: Region]
+        method compare(a: &[String, R], b: &[String, S]): Ordering is
+            let lenA: Index := length(a);
+            let lenB: Index := length(b);
+            var i: Index := 0;
+            while (i < lenA) and (i < lenB) do
+                let byteA: Nat8 := nthByte(a, i);
+                let byteB: Nat8 := nthByte(b, i);
+                if byteA < byteB then
+                    return LessThan();
+                else if byteA > byteB then
+                    return GreaterThan();
+                end if;
+                i := i + 1;
+            end while;
+            if lenA = lenB then
+                return Equal();
+            else if i = lenA then
+                return LessThan();
+            else
+                return GreaterThan();
+            end if;
+        end;
+    end;
+end module body.
