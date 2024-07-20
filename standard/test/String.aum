@@ -14,18 +14,22 @@ import Standard.String (
     nthByte,
     storeNth
 );
-import Standard.Test.Unit (
-    assertTrue,
-    assertSuccess,
-    assertFailure,
-    suiteHeading,
-    testHeading
+import Standard.Equality (
+    equal
 );
 import Standard.Order (
     LessThan,
     GreaterThan,
     Equal,
     compare
+);
+import Standard.Test.Unit (
+    assertTrue,
+    assertFalse,
+    assertSuccess,
+    assertFailure,
+    suiteHeading,
+    testHeading
 );
 
 module body Standard.Test.String is
@@ -36,6 +40,7 @@ module body Standard.Test.String is
         fromLiteralTest();
         fromLiteralEmptyTest();
         storeNthTest();
+        equalTest();
         compareTest();
         return nil;
     end;
@@ -104,6 +109,25 @@ module body Standard.Test.String is
         assertTrue(nthByte(&b, 0) = 'b', "[0] = b");
         destroyString(b);
         assertSuccess("storeNth complete");
+        return nil;
+    end;
+
+    function equalTest(): Unit is
+        testHeading("equal");
+
+        var a: String := fromLiteral("a");
+        var b: String := fromLiteral("a");
+        assertTrue(equal(&a, &b), "\"a\" = \"b\"");
+        destroyString(a);
+        destroyString(b);
+
+        a := fromLiteral("a");
+        b := fromLiteral("b");
+        assertFalse(equal(&a, &b), "\"a\" = \"b\"");
+        destroyString(a);
+        destroyString(b);
+
+        assertSuccess("equal complete");
         return nil;
     end;
 

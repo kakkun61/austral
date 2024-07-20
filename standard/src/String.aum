@@ -15,6 +15,9 @@ import Standard.Buffer (
     getSpan as bufferGetSpan,
     getSpanMut as bufferGetSpanMut
 );
+import Standard.Equality (
+    Equality
+);
 import Standard.Order (
     Equal,
     GreaterThan,
@@ -110,6 +113,26 @@ module body Standard.String is
     ---
     --- Instances
     ---
+    instance Equality(String) is
+        generic [R: Region, S: Region]
+        method equal(a: &[String, R], b: &[String, S]): Bool is
+            let lenA: Index := length(a);
+            let lenB: Index := length(b);
+            if lenA = lenB then
+                var i: Index := 0;
+                while i < lenA do
+                    if nthByte(a, i) /= nthByte(b, i) then
+                        return false;
+                    end if;
+                    i := i + 1;
+                end while;
+                return true;
+            else
+                return false;
+            end if;
+        end;
+    end;
+
     instance TotalOrder(String) is
         generic [R: Region, S: Region]
         method compare(a: &[String, R], b: &[String, S]): Ordering is
