@@ -19,14 +19,14 @@ module body Standard.Order is
 
     instance PartialOrder(Nat8) is
         generic [R: Region, S: Region]
-		method partialCompare(a: &[Nat8, R], b: &[Nat8, S]): PartialOrdering is
+        method partialCompare(a: &[Nat8, R], b: &[Nat8, S]): PartialOrdering is
             return Comparable(order => compare(a, b));
         end;
-	end;
+    end;
 
     instance TotalOrder(Nat8) is
         generic [R: Region, S: Region]
-		method compare(a: &[Nat8, R], b: &[Nat8, S]): Ordering is
+        method compare(a: &[Nat8, R], b: &[Nat8, S]): Ordering is
             let av: Nat8 := !a;
             let bv: Nat8 := !b;
             if av = bv then
@@ -39,5 +39,5 @@ module body Standard.Order is
                 end if;
             end if;
         end;
-	end;
+    end;
 end module body.

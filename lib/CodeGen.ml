@@ -60,7 +60,7 @@ open Error
        switch (tmp_0.tag) {
            case Optional_Int_Tag.PRESENT:
                 int32_t value = tmp_0.data.Present.value;
-	        f();
+            f();
                 break;
            case Optional_Int_Tag.ABSENT:
                 g();
