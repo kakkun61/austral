@@ -1,0 +1,4 @@
+module Standard.Spans is
+    generic [T: Type, R: Region]
+    function subspan(span: Span[T, R], start: Index, final: Index): Span[T, R];
+end module.

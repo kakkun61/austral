@@ -1,0 +1,20 @@
+pragma Unsafe_Module;
+
+import Austral.Memory (
+    Pointer,
+    span as memorySpan
+);
+
+module body Standard.Spans is
+    generic [T: Type, R: Region]
+    function subspan(span: Span[T, R], start: Index, final: Index): Span[T, R] is
+        let length: Index := spanLength(span);
+        if final < start then
+            abort("final < start in subspan");
+        else if length <= final then
+            abort("length <= final in subspan");
+        end if;
+        let pointer: Pointer[T] := @embed(Pointer[T], "$1.data", span);
+        return memorySpan(&pointer, start, final);
+    end;
+end module body.
