@@ -14,7 +14,7 @@ module body Austral.Pervasive is
     function spanWriteLength(sp: Span![T, R]): Index is
         return @embed(Index, "$1.size", sp);
     end;
-    
+
     function abort(message: Span[Nat8, Static]): Unit is
         return @embed(Unit, "au_abort($1)", message);
     end;
@@ -2026,6 +2026,562 @@ module body Austral.Pervasive is
     instance ToFloat64(Float64) is
         method toFloat64(value: Float64): Option[Float64] is
             return Some(value => value);
+        end;
+    end;
+
+    --- CastNat16
+
+    instance CastNat16(Nat8) is
+        method castNat16(value: Nat8): Nat16 is
+            return @embed(Nat16, "((au_nat16_t)($1))", value);
+        end;
+    end;
+
+    instance CastNat16(Nat16) is
+        method castNat16(value: Nat16): Nat16 is
+            return value;
+        end;
+    end;
+
+    --- CastNat32
+
+    instance CastNat32(Nat8) is
+        method castNat32(value: Nat8): Nat32 is
+            return @embed(Nat32, "((au_nat32_t)($1))", value);
+        end;
+    end;
+
+    instance CastNat32(Nat16) is
+        method castNat32(value: Nat16): Nat32 is
+            return @embed(Nat32, "((au_nat32_t)($1))", value);
+        end;
+    end;
+
+    instance CastNat32(Nat32) is
+        method castNat32(value: Nat32): Nat32 is
+            return value;
+        end;
+    end;
+
+    --- CastNat64
+
+    instance CastNat64(Nat8) is
+        method castNat64(value: Nat8): Nat64 is
+            return @embed(Nat64, "((au_nat64_t)($1))", value);
+        end;
+    end;
+
+    instance CastNat64(Nat16) is
+        method castNat64(value: Nat16): Nat64 is
+            return @embed(Nat64, "((au_nat64_t)($1))", value);
+        end;
+    end;
+
+    instance CastNat64(Nat32) is
+        method castNat64(value: Nat32): Nat64 is
+            return @embed(Nat64, "((au_nat64_t)($1))", value);
+        end;
+    end;
+
+    instance CastNat64(Nat64) is
+        method castNat64(value: Nat64): Nat64 is
+            return value;
+        end;
+    end;
+
+    --- CastInt16
+
+    instance CastInt16(Nat8) is
+        method castInt16(value: Nat8): Int16 is
+            return @embed(Int16, "((au_int16_t)($1))", value);
+        end;
+    end;
+
+    instance CastInt16(Int8) is
+        method castInt16(value: Int8): Int16 is
+            return @embed(Int16, "((au_int16_t)($1))", value);
+        end;
+    end;
+
+    instance CastInt16(Int16) is
+        method castInt16(value: Int16): Int16 is
+            return value;
+        end;
+    end;
+
+    --- CastInt32
+
+    instance CastInt32(Nat8) is
+        method castInt32(value: Nat8): Int32 is
+            return @embed(Int32, "((au_int32_t)($1))", value);
+        end;
+    end;
+
+    instance CastInt32(Nat16) is
+        method castInt32(value: Nat16): Int32 is
+            return @embed(Int32, "((au_int32_t)($1))", value);
+        end;
+    end;
+
+    instance CastInt32(Int8) is
+        method castInt32(value: Int8): Int32 is
+            return @embed(Int32, "((au_int32_t)($1))", value);
+        end;
+    end;
+
+    instance CastInt32(Int16) is
+        method castInt32(value: Int16): Int32 is
+            return @embed(Int32, "((au_int32_t)($1))", value);
+        end;
+    end;
+
+    instance CastInt32(Int32) is
+        method castInt32(value: Int32): Int32 is
+            return value;
+        end;
+    end;
+
+    --- CastInt64
+
+    instance CastInt64(Nat8) is
+        method castInt64(value: Nat8): Int64 is
+            return @embed(Int64, "((au_int64_t)($1))", value);
+        end;
+    end;
+
+    instance CastInt64(Nat16) is
+        method castInt64(value: Nat16): Int64 is
+            return @embed(Int64, "((au_int64_t)($1))", value);
+        end;
+    end;
+
+    instance CastInt64(Nat32) is
+        method castInt64(value: Nat32): Int64 is
+            return @embed(Int64, "((au_int64_t)($1))", value);
+        end;
+    end;
+
+    instance CastInt64(Int8) is
+        method castInt64(value: Int8): Int64 is
+            return @embed(Int64, "((au_int64_t)($1))", value);
+        end;
+    end;
+
+    instance CastInt64(Int16) is
+        method castInt64(value: Int16): Int64 is
+            return @embed(Int64, "((au_int64_t)($1))", value);
+        end;
+    end;
+
+    instance CastInt64(Int32) is
+        method castInt64(value: Int32): Int64 is
+            return @embed(Int64, "((au_int64_t)($1))", value);
+        end;
+    end;
+
+    instance CastInt64(Int64) is
+        method castInt64(value: Int64): Int64 is
+            return value;
+        end;
+    end;
+
+    --- UnsafeCastNat8
+
+    instance UnsafeCastNat8(Nat8) is
+        method unsafeCastNat8(value: Nat8): Nat8 is
+            return value;
+        end;
+    end;
+
+    instance UnsafeCastNat8(Nat16) is
+        method unsafeCastNat8(value: Nat16): Nat8 is
+            return @embed(Nat8, "((au_nat8_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastNat8(Nat32) is
+        method unsafeCastNat8(value: Nat32): Nat8 is
+            return @embed(Nat8, "((au_nat8_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastNat8(Nat64) is
+        method unsafeCastNat8(value: Nat64): Nat8 is
+            return @embed(Nat8, "((au_nat8_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastNat8(Int8) is
+        method unsafeCastNat8(value: Int8): Nat8 is
+            return @embed(Nat8, "((au_nat8_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastNat8(Int16) is
+        method unsafeCastNat8(value: Int16): Nat8 is
+            return @embed(Nat8, "((au_nat8_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastNat8(Int32) is
+        method unsafeCastNat8(value: Int32): Nat8 is
+            return @embed(Nat8, "((au_nat8_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastNat8(Int64) is
+        method unsafeCastNat8(value: Int64): Nat8 is
+            return @embed(Nat8, "((au_nat8_t)($1))", value);
+        end;
+    end;
+
+    --- UnsafeCastNat16
+
+    instance UnsafeCastNat16(Nat8) is
+        method unsafeCastNat16(value: Nat8): Nat16 is
+            return @embed(Nat16, "((au_nat16_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastNat16(Nat16) is
+        method unsafeCastNat16(value: Nat16): Nat16 is
+            return value;
+        end;
+    end;
+
+    instance UnsafeCastNat16(Nat32) is
+        method unsafeCastNat16(value: Nat32): Nat16 is
+            return @embed(Nat16, "((au_nat16_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastNat16(Nat64) is
+        method unsafeCastNat16(value: Nat64): Nat16 is
+            return @embed(Nat16, "((au_nat16_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastNat16(Int8) is
+        method unsafeCastNat16(value: Int8): Nat16 is
+            return @embed(Nat16, "((au_nat16_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastNat16(Int16) is
+        method unsafeCastNat16(value: Int16): Nat16 is
+            return @embed(Nat16, "((au_nat16_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastNat16(Int32) is
+        method unsafeCastNat16(value: Int32): Nat16 is
+            return @embed(Nat16, "((au_nat16_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastNat16(Int64) is
+        method unsafeCastNat16(value: Int64): Nat16 is
+            return @embed(Nat16, "((au_nat16_t)($1))", value);
+        end;
+    end;
+
+    --- UnsafeCastNat32
+
+    instance UnsafeCastNat32(Nat8) is
+        method unsafeCastNat32(value: Nat8): Nat32 is
+            return @embed(Nat32, "((au_nat32_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastNat32(Nat16) is
+        method unsafeCastNat32(value: Nat16): Nat32 is
+            return @embed(Nat32, "((au_nat32_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastNat32(Nat32) is
+        method unsafeCastNat32(value: Nat32): Nat32 is
+            return value;
+        end;
+    end;
+
+    instance UnsafeCastNat32(Nat64) is
+        method unsafeCastNat32(value: Nat64): Nat32 is
+            return @embed(Nat32, "((au_nat32_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastNat32(Int8) is
+        method unsafeCastNat32(value: Int8): Nat32 is
+            return @embed(Nat32, "((au_nat32_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastNat32(Int16) is
+        method unsafeCastNat32(value: Int16): Nat32 is
+            return @embed(Nat32, "((au_nat32_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastNat32(Int32) is
+        method unsafeCastNat32(value: Int32): Nat32 is
+            return @embed(Nat32, "((au_nat32_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastNat32(Int64) is
+        method unsafeCastNat32(value: Int64): Nat32 is
+            return @embed(Nat32, "((au_nat32_t)($1))", value);
+        end;
+    end;
+
+    --- UnsafeCastNat64
+
+    instance UnsafeCastNat64(Nat8) is
+        method unsafeCastNat64(value: Nat8): Nat64 is
+            return @embed(Nat64, "((au_nat64_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastNat64(Nat16) is
+        method unsafeCastNat64(value: Nat16): Nat64 is
+            return @embed(Nat64, "((au_nat64_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastNat64(Nat32) is
+        method unsafeCastNat64(value: Nat32): Nat64 is
+            return @embed(Nat64, "((au_nat64_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastNat64(Nat64) is
+        method unsafeCastNat64(value: Nat64): Nat64 is
+            return value;
+        end;
+    end;
+
+    instance UnsafeCastNat64(Int8) is
+        method unsafeCastNat64(value: Int8): Nat64 is
+            return @embed(Nat64, "((au_nat64_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastNat64(Int16) is
+        method unsafeCastNat64(value: Int16): Nat64 is
+            return @embed(Nat64, "((au_nat64_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastNat64(Int32) is
+        method unsafeCastNat64(value: Int32): Nat64 is
+            return @embed(Nat64, "((au_nat64_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastNat64(Int64) is
+        method unsafeCastNat64(value: Int64): Nat64 is
+            return @embed(Nat64, "((au_nat64_t)($1))", value);
+        end;
+    end;
+
+    --- UnsafeCastInt8
+
+    instance UnsafeCastInt8(Nat8) is
+        method unsafeCastInt8(value: Nat8): Int8 is
+            return @embed(Int8, "((au_int8_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastInt8(Nat16) is
+        method unsafeCastInt8(value: Nat16): Int8 is
+            return @embed(Int8, "((au_int8_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastInt8(Nat32) is
+        method unsafeCastInt8(value: Nat32): Int8 is
+            return @embed(Int8, "((au_int8_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastInt8(Nat64) is
+        method unsafeCastInt8(value: Nat64): Int8 is
+            return @embed(Int8, "((au_int8_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastInt8(Int8) is
+        method unsafeCastInt8(value: Int8): Int8 is
+            return value;
+        end;
+    end;
+
+    instance UnsafeCastInt8(Int16) is
+        method unsafeCastInt8(value: Int16): Int8 is
+            return @embed(Int8, "((au_int8_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastInt8(Int32) is
+        method unsafeCastInt8(value: Int32): Int8 is
+            return @embed(Int8, "((au_int8_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastInt8(Int64) is
+        method unsafeCastInt8(value: Int64): Int8 is
+            return @embed(Int8, "((au_int8_t)($1))", value);
+        end;
+    end;
+
+    --- UnsafeCastInt16
+
+    instance UnsafeCastInt16(Nat8) is
+        method unsafeCastInt16(value: Nat8): Int16 is
+            return @embed(Int16, "((au_int16_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastInt16(Nat16) is
+        method unsafeCastInt16(value: Nat16): Int16 is
+            return @embed(Int16, "((au_int16_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastInt16(Nat32) is
+        method unsafeCastInt16(value: Nat32): Int16 is
+            return @embed(Int16, "((au_int16_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastInt16(Nat64) is
+        method unsafeCastInt16(value: Nat64): Int16 is
+            return @embed(Int16, "((au_int16_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastInt16(Int8) is
+        method unsafeCastInt16(value: Int8): Int16 is
+            return @embed(Int16, "((au_int16_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastInt16(Int16) is
+        method unsafeCastInt16(value: Int16): Int16 is
+            return value;
+        end;
+    end;
+
+    instance UnsafeCastInt16(Int32) is
+        method unsafeCastInt16(value: Int32): Int16 is
+            return @embed(Int16, "((au_int16_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastInt16(Int64) is
+        method unsafeCastInt16(value: Int64): Int16 is
+            return @embed(Int16, "((au_int16_t)($1))", value);
+        end;
+    end;
+
+    --- UnsafeCastInt32
+
+    instance UnsafeCastInt32(Nat8) is
+        method unsafeCastInt32(value: Nat8): Int32 is
+            return @embed(Int32, "((au_int32_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastInt32(Nat16) is
+        method unsafeCastInt32(value: Nat16): Int32 is
+            return @embed(Int32, "((au_int32_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastInt32(Nat32) is
+        method unsafeCastInt32(value: Nat32): Int32 is
+            return @embed(Int32, "((au_int32_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastInt32(Nat64) is
+        method unsafeCastInt32(value: Nat64): Int32 is
+            return @embed(Int32, "((au_int32_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastInt32(Int8) is
+        method unsafeCastInt32(value: Int8): Int32 is
+            return @embed(Int32, "((au_int32_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastInt32(Int16) is
+        method unsafeCastInt32(value: Int16): Int32 is
+            return @embed(Int32, "((au_int32_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastInt32(Int32) is
+        method unsafeCastInt32(value: Int32): Int32 is
+            return value;
+        end;
+    end;
+
+    instance UnsafeCastInt32(Int64) is
+        method unsafeCastInt32(value: Int64): Int32 is
+            return @embed(Int32, "((au_int32_t)($1))", value);
+        end;
+    end;
+
+    --- UnsafeCastInt64
+
+    instance UnsafeCastInt64(Nat8) is
+        method unsafeCastInt64(value: Nat8): Int64 is
+            return @embed(Int64, "((au_int64_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastInt64(Nat16) is
+        method unsafeCastInt64(value: Nat16): Int64 is
+            return @embed(Int64, "((au_int64_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastInt64(Nat32) is
+        method unsafeCastInt64(value: Nat32): Int64 is
+            return @embed(Int64, "((au_int64_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastInt64(Nat64) is
+        method unsafeCastInt64(value: Nat64): Int64 is
+            return @embed(Int64, "((au_int64_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastInt64(Int8) is
+        method unsafeCastInt64(value: Int8): Int64 is
+            return @embed(Int64, "((au_int64_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastInt64(Int16) is
+        method unsafeCastInt64(value: Int16): Int64 is
+            return @embed(Int64, "((au_int64_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastInt64(Int32) is
+        method unsafeCastInt64(value: Int32): Int64 is
+            return @embed(Int64, "((au_int64_t)($1))", value);
+        end;
+    end;
+
+    instance UnsafeCastInt64(Int64) is
+        method unsafeCastInt64(value: Int64): Int64 is
+            return value;
         end;
     end;
 

@@ -321,6 +321,164 @@ module Austral.Pervasive is
     instance ToFloat64(Float32);
     instance ToFloat64(Float64);
 
+    typeclass CastNat16(T: Type) is
+        method castNat16(value: T): Nat16;
+    end;
+
+    instance CastNat16(Nat8);
+    instance CastNat16(Nat16);
+
+    typeclass CastNat32(T: Type) is
+        method castNat32(value: T): Nat32;
+    end;
+
+    instance CastNat32(Nat8);
+    instance CastNat32(Nat16);
+    instance CastNat32(Nat32);
+
+    typeclass CastNat64(T: Type) is
+        method castNat64(value: T): Nat64;
+    end;
+
+    instance CastNat64(Nat8);
+    instance CastNat64(Nat16);
+    instance CastNat64(Nat32);
+    instance CastNat64(Nat64);
+
+    typeclass CastInt16(T: Type) is
+        method castInt16(value: T): Int16;
+    end;
+
+    instance CastInt16(Nat8);
+    instance CastInt16(Int8);
+    instance CastInt16(Int16);
+
+    typeclass CastInt32(T: Type) is
+        method castInt32(value: T): Int32;
+    end;
+
+    instance CastInt32(Nat8);
+    instance CastInt32(Nat16);
+    instance CastInt32(Int8);
+    instance CastInt32(Int16);
+    instance CastInt32(Int32);
+
+    typeclass CastInt64(T: Type) is
+        method castInt64(value: T): Int64;
+    end;
+
+    instance CastInt64(Nat8);
+    instance CastInt64(Nat16);
+    instance CastInt64(Nat32);
+    instance CastInt64(Int8);
+    instance CastInt64(Int16);
+    instance CastInt64(Int32);
+    instance CastInt64(Int64);
+
+    typeclass UnsafeCastNat8(T: Type) is
+        method unsafeCastNat8(value: T): Nat8;
+    end;
+
+    instance UnsafeCastNat8(Nat8);
+    instance UnsafeCastNat8(Nat16);
+    instance UnsafeCastNat8(Nat32);
+    instance UnsafeCastNat8(Nat64);
+    instance UnsafeCastNat8(Int8);
+    instance UnsafeCastNat8(Int16);
+    instance UnsafeCastNat8(Int32);
+    instance UnsafeCastNat8(Int64);
+
+    typeclass UnsafeCastNat16(T: Type) is
+        method unsafeCastNat16(value: T): Nat16;
+    end;
+
+    instance UnsafeCastNat16(Nat8);
+    instance UnsafeCastNat16(Nat16);
+    instance UnsafeCastNat16(Nat32);
+    instance UnsafeCastNat16(Nat64);
+    instance UnsafeCastNat16(Int8);
+    instance UnsafeCastNat16(Int16);
+    instance UnsafeCastNat16(Int32);
+    instance UnsafeCastNat16(Int64);
+
+    typeclass UnsafeCastNat32(T: Type) is
+        method unsafeCastNat32(value: T): Nat32;
+    end;
+
+    instance UnsafeCastNat32(Nat8);
+    instance UnsafeCastNat32(Nat16);
+    instance UnsafeCastNat32(Nat32);
+    instance UnsafeCastNat32(Nat64);
+    instance UnsafeCastNat32(Int8);
+    instance UnsafeCastNat32(Int16);
+    instance UnsafeCastNat32(Int32);
+    instance UnsafeCastNat32(Int64);
+
+    typeclass UnsafeCastNat64(T: Type) is
+        method unsafeCastNat64(value: T): Nat64;
+    end;
+
+    instance UnsafeCastNat64(Nat8);
+    instance UnsafeCastNat64(Nat16);
+    instance UnsafeCastNat64(Nat32);
+    instance UnsafeCastNat64(Nat64);
+    instance UnsafeCastNat64(Int8);
+    instance UnsafeCastNat64(Int16);
+    instance UnsafeCastNat64(Int32);
+    instance UnsafeCastNat64(Int64);
+
+    typeclass UnsafeCastInt8(T: Type) is
+        method unsafeCastInt8(value: T): Int8;
+    end;
+
+    instance UnsafeCastInt8(Nat8);
+    instance UnsafeCastInt8(Nat16);
+    instance UnsafeCastInt8(Nat32);
+    instance UnsafeCastInt8(Nat64);
+    instance UnsafeCastInt8(Int8);
+    instance UnsafeCastInt8(Int16);
+    instance UnsafeCastInt8(Int32);
+    instance UnsafeCastInt8(Int64);
+
+    typeclass UnsafeCastInt16(T: Type) is
+        method unsafeCastInt16(value: T): Int16;
+    end;
+
+    instance UnsafeCastInt16(Nat8);
+    instance UnsafeCastInt16(Nat16);
+    instance UnsafeCastInt16(Nat32);
+    instance UnsafeCastInt16(Nat64);
+    instance UnsafeCastInt16(Int8);
+    instance UnsafeCastInt16(Int16);
+    instance UnsafeCastInt16(Int32);
+    instance UnsafeCastInt16(Int64);
+
+    typeclass UnsafeCastInt32(T: Type) is
+        method unsafeCastInt32(value: T): Int32;
+    end;
+
+    instance UnsafeCastInt32(Nat8);
+    instance UnsafeCastInt32(Nat16);
+    instance UnsafeCastInt32(Nat32);
+    instance UnsafeCastInt32(Nat64);
+    instance UnsafeCastInt32(Int8);
+    instance UnsafeCastInt32(Int16);
+    instance UnsafeCastInt32(Int32);
+    instance UnsafeCastInt32(Int64);
+
+    typeclass UnsafeCastInt64(T: Type) is
+        method unsafeCastInt64(value: T): Int64;
+    end;
+
+    instance UnsafeCastInt64(Nat8);
+    instance UnsafeCastInt64(Nat16);
+    instance UnsafeCastInt64(Nat32);
+    instance UnsafeCastInt64(Nat64);
+    instance UnsafeCastInt64(Int8);
+    instance UnsafeCastInt64(Int16);
+    instance UnsafeCastInt64(Int32);
+    instance UnsafeCastInt64(Int64);
+
     typeclass Remainder(T: Type) is
         method rem(lhs: T, rhs: T): T;
     end;

@@ -89,6 +89,34 @@ let pervasive_imports =
         ConcreteImport (make_ident "ToFloat64", None);
         ConcreteImport (make_ident "toFloat64", None);
         ConcreteImport (make_ident "Remainder", None);
+        ConcreteImport (make_ident "CastNat16", None);
+        ConcreteImport (make_ident "castNat16", None);
+        ConcreteImport (make_ident "CastNat32", None);
+        ConcreteImport (make_ident "castNat32", None);
+        ConcreteImport (make_ident "CastNat64", None);
+        ConcreteImport (make_ident "castNat64", None);
+        ConcreteImport (make_ident "CastInt16", None);
+        ConcreteImport (make_ident "castInt16", None);
+        ConcreteImport (make_ident "CastInt32", None);
+        ConcreteImport (make_ident "castInt32", None);
+        ConcreteImport (make_ident "CastInt64", None);
+        ConcreteImport (make_ident "castInt64", None);
+        ConcreteImport (make_ident "UnsafeCastNat8", None);
+        ConcreteImport (make_ident "unsafeCastNat8", None);
+        ConcreteImport (make_ident "UnsafeCastNat16", None);
+        ConcreteImport (make_ident "unsafeCastNat16", None);
+        ConcreteImport (make_ident "UnsafeCastNat32", None);
+        ConcreteImport (make_ident "unsafeCastNat32", None);
+        ConcreteImport (make_ident "UnsafeCastNat64", None);
+        ConcreteImport (make_ident "unsafeCastNat64", None);
+        ConcreteImport (make_ident "UnsafeCastInt8", None);
+        ConcreteImport (make_ident "unsafeCastInt8", None);
+        ConcreteImport (make_ident "UnsafeCastInt16", None);
+        ConcreteImport (make_ident "unsafeCastInt16", None);
+        ConcreteImport (make_ident "UnsafeCastInt32", None);
+        ConcreteImport (make_ident "unsafeCastInt32", None);
+        ConcreteImport (make_ident "UnsafeCastInt64", None);
+        ConcreteImport (make_ident "unsafeCastInt64", None);
         ConcreteImport (make_ident "rem", None);
       ]
     )
